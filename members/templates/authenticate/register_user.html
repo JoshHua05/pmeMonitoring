@@ -1,0 +1,68 @@
+{% extends "pmeApp/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+    <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="display-6">Register</h1>
+                </div>
+                <div class="card-body">
+                        {% if form.errors %}
+                        <div class="container">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                There was an error with your form...  
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        {% endif %}      
+                        <form action="{% url 'register_user' %}" method="POST">
+                            {% csrf_token %}          
+                                <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Username:</label>
+                                {% render_field form.username placeholder="" class+="form-control" %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">First name:</label>
+                                    {% render_field form.first_name placeholder="" class+="form-control" %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Last name:</label>
+                                    {% render_field form.last_name placeholder="" class+="form-control" %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email:</label>
+                                    {% render_field form.email placeholder="e.g. mail@email.com" class+="form-control" %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Password:</label>
+                                    {% render_field form.password1 placeholder="" class+="form-control" %}
+                                    <div id="emailHelp" class="form-text">&bull; Your password can’t be too similar to your other personal information.</div>
+                                    <div id="emailHelp" class="form-text">&bull; Your password must contain at least 8 characters.</div>
+                                    <div id="emailHelp" class="form-text">&bull; Your password can’t be a commonly used password.</div>
+                                    <div id="emailHelp" class="form-text">&bull; Your password can’t be entirely numeric.</div>
+                                </div>
+                                <div class="mb-3"></div>
+                                    <label for="exampleInputEmail1" class="form-label">Confirm password:</label>
+                                    {% render_field form.password2 placeholder="" class+="form-control" %}
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    <input type="submit" value="REGISTER" class="btn btn-primary">
+                                </div>
+                        </form>
+                </div>
+            </div>
+        <div class="col-2"></div>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
+

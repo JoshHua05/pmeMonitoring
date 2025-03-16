@@ -1,0 +1,659 @@
+{% extends "pmeApp/layout.html" %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        {% if user.id == 1 %}
+                        <a href="{% url 'report-csv' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        {% else %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- AFGH -->
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                AFGH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardAFGH }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FABH -->
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                FABH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardFABH  }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- CABH -->
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                AFCH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardAFCH }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CGARSH -->
+                        <div class="col-xl-2 col-md-6 mb-4">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            CGARSH</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardCGARSH }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BGBNEABH -->
+                    <div class="col-xl-2 col-md-6 mb-4">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            BGBNEABH</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardBGBNEABH}}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EAABH -->
+                    <div class="col-xl-2 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            EAABH</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ cardEAABH }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        
+                </div>
+                <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-7">
+
+                            <div class="card shadow mb-4 border-left-danger py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h1 class="display-6">OVERALL RECAP</h1>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ countMale }}</td>
+                                                            <td>{{ countMaleOngoing }}</td>
+                                                            <td>{{ countMaleP1 }}</td>
+                                                            <td>{{ countMaleP2 }}</td>
+                                                            <td>{{ countMaleDQ }}</td>
+                                                            <td>{{ countMaleDNC }}</td>
+                                                            <td>{{ countMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ countFemale }}</td>
+                                                            <td>{{ countFemaleOngoing }}</td>
+                                                            <td>{{ countFemaleP1 }}</td>
+                                                            <td>{{ countFemaleP2 }}</td>
+                                                            <td>{{ countFemaleDQ }}</td>
+                                                            <td>{{ countFemaleDNC }}</td>
+                                                            <td>{{ countFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ countTotal }}</td>
+                                                            <td>{{ countTotalOngoing }}</td>
+                                                            <td>{{ countTotalP1 }}</td> 
+                                                            <td>{{ countTotalP2 }}</td>
+                                                            <td>{{ countTotalDQ }}</td>
+                                                            <td>{{ countTotalDNC }}</td>
+                                                            <td>{{ countTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ countGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--AFGH and FABH Content Row -->
+                    <div class="row">
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-primary py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">AFGH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ AFGHcountMale }}</td>
+                                                            <td>{{ AFGHcountMaleOngoing }}</td>
+                                                            <td>{{ AFGHcountMaleP1 }}</td>
+                                                            <td>{{ AFGHcountMaleP2 }}</td>
+                                                            <td>{{ AFGHcountMaleDQ }}</td>
+                                                            <td>{{ AFGHcountMaleDNC }}</td>
+                                                            <td>{{ AFGHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ AFGHcountFemale }}</td>
+                                                            <td>{{ AFGHcountFemaleOngoing }}</td>
+                                                            <td>{{ AFGHcountFemaleP1 }}</td>
+                                                            <td>{{ AFGHcountFemaleP2 }}</td>
+                                                            <td>{{ AFGHcountFemaleDQ }}</td>
+                                                            <td>{{ AFGHcountFemaleDNC }}</td>
+                                                            <td>{{ AFGHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ AFGHcountTotal }}</td>
+                                                            <td>{{ AFGHcountTotalOngoing }}</td>
+                                                            <td>{{ AFGHcountTotalP1 }}</td> 
+                                                            <td>{{ AFGHcountTotalP2 }}</td>
+                                                            <td>{{ AFGHcountTotalDQ }}</td>
+                                                            <td>{{ AFGHcountTotalDNC }}</td>
+                                                            <td>{{ AFGHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ AFGHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                      </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-primary py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">FABH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ FABHcountMale }}</td>
+                                                            <td>{{ FABHcountMaleOngoing }}</td>
+                                                            <td>{{ FABHcountMaleP1 }}</td>
+                                                            <td>{{ FABHcountMaleP2 }}</td>
+                                                            <td>{{ FABHcountMaleDQ }}</td>
+                                                            <td>{{ FABHcountMaleDNC }}</td>
+                                                            <td>{{ FABHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ FABHcountFemale }}</td>
+                                                            <td>{{ FABHcountFemaleOngoing }}</td>
+                                                            <td>{{ FABHcountFemaleP1 }}</td>
+                                                            <td>{{ FABHcountFemaleP2 }}</td>
+                                                            <td>{{ FABHcountFemaleDQ }}</td>
+                                                            <td>{{ FABHcountFemaleDNC }}</td>
+                                                            <td>{{ FABHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ FABHcountTotal }}</td>
+                                                            <td>{{ FABHcountTotalOngoing }}</td>
+                                                            <td>{{ FABHcountTotalP1 }}</td> 
+                                                            <td>{{ FABHcountTotalP2 }}</td>
+                                                            <td>{{ FABHcountTotalDQ }}</td>
+                                                            <td>{{ FABHcountTotalDNC }}</td>
+                                                            <td>{{ FABHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ FABHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                      </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!--AFCH and CGARSH Content Row -->
+                    <div class="row">
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-primary py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">AFCH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ AFCHcountMale }}</td>
+                                                            <td>{{ AFCHcountMaleOngoing }}</td>
+                                                            <td>{{ AFCHcountMaleP1 }}</td>
+                                                            <td>{{ AFCHcountMaleP2 }}</td>
+                                                            <td>{{ AFCHcountMaleDQ }}</td>
+                                                            <td>{{ AFCHcountMaleDNC }}</td>
+                                                            <td>{{ AFCHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ AFCHcountFemale }}</td>
+                                                            <td>{{ AFCHcountFemaleOngoing }}</td>
+                                                            <td>{{ AFCHcountFemaleP1 }}</td>
+                                                            <td>{{ AFCHcountFemaleP2 }}</td>
+                                                            <td>{{ AFCHcountFemaleDQ }}</td>
+                                                            <td>{{ AFCHcountFemaleDNC }}</td>
+                                                            <td>{{ AFCHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ AFCHcountTotal }}</td>
+                                                            <td>{{ AFCHcountTotalOngoing }}</td>
+                                                            <td>{{ AFCHcountTotalP1 }}</td> 
+                                                            <td>{{ AFCHcountTotalP2 }}</td>
+                                                            <td>{{ AFCHcountTotalDQ }}</td>
+                                                            <td>{{ AFCHcountTotalDNC }}</td>
+                                                            <td>{{ AFCHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ AFCHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-secondary py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">CGARSH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ CGARSHcountMale }}</td>
+                                                            <td>{{ CGARSHcountMaleOngoing }}</td>
+                                                            <td>{{ CGARSHcountMaleP1 }}</td>
+                                                            <td>{{ CGARSHcountMaleP2 }}</td>
+                                                            <td>{{ CGARSHcountMaleDQ }}</td>
+                                                            <td>{{ CGARSHcountMaleDNC }}</td>
+                                                            <td>{{ CGARSHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ CGARSHcountFemale }}</td>
+                                                            <td>{{ CGARSHcountFemaleOngoing }}</td>
+                                                            <td>{{ CGARSHcountFemaleP1 }}</td>
+                                                            <td>{{ CGARSHcountFemaleP2 }}</td>
+                                                            <td>{{ CGARSHcountFemaleDQ }}</td>
+                                                            <td>{{ CGARSHcountFemaleDNC }}</td>
+                                                            <td>{{ CGARSHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ CGARSHcountTotal }}</td>
+                                                            <td>{{ CGARSHcountTotalOngoing }}</td>
+                                                            <td>{{ CGARSHcountTotalP1 }}</td> 
+                                                            <td>{{ CGARSHcountTotalP2 }}</td>
+                                                            <td>{{ CGARSHcountTotalDQ }}</td>
+                                                            <td>{{ CGARSHcountTotalDNC }}</td>
+                                                            <td>{{ CGARSHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ CGARSHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!--BGBNEABH and EAABH Content Row -->
+                    <div class="row">
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-secondary py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">BGBNEABH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ BGBNEABHcountMale }}</td>
+                                                            <td>{{ BGBNEABHcountMaleOngoing }}</td>
+                                                            <td>{{ BGBNEABHcountMaleP1 }}</td>
+                                                            <td>{{ BGBNEABHcountMaleP2 }}</td>
+                                                            <td>{{ BGBNEABHcountMaleDQ }}</td>
+                                                            <td>{{ BGBNEABHcountMaleDNC }}</td>
+                                                            <td>{{ BGBNEABHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ BGBNEABHcountFemale }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleOngoing }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleP1 }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleP2 }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleDQ }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleDNC }}</td>
+                                                            <td>{{ BGBNEABHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ BGBNEABHcountTotal }}</td>
+                                                            <td>{{ BGBNEABHcountTotalOngoing }}</td>
+                                                            <td>{{ BGBNEABHcountTotalP1 }}</td> 
+                                                            <td>{{ BGBNEABHcountTotalP2 }}</td>
+                                                            <td>{{ BGBNEABHcountTotalDQ }}</td>
+                                                            <td>{{ BGBNEABHcountTotalDNC }}</td>
+                                                            <td>{{ BGBNEABHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ BGBNEABHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="card shadow mb-4 border-left-warning py-3 d-flex flex-row ">
+                                <!-- Card Header - Dropdown -->
+                                <div class="container-fluid">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">EAABH</h6>
+                                        </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SEX</th>
+                                                            <th>TOTAL</th>
+                                                            <th>ONGOING</th>
+                                                            <th>P1</th>   
+                                                            <th>P2</th>
+                                                            <th>DQ</th>
+                                                            <th>DNC</th>
+                                                            <th>DNR</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">MALE</td>
+                                                            <th scope="row">{{ EAABHcountMale }}</td>
+                                                            <td>{{ EAABHcountMaleOngoing }}</td>
+                                                            <td>{{ EAABHcountMaleP1 }}</td>
+                                                            <td>{{ EAABHcountMaleP2 }}</td>
+                                                            <td>{{ EAABHcountMaleDQ }}</td>
+                                                            <td>{{ EAABHcountMaleDNC }}</td>
+                                                            <td>{{ EAABHcountMaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">FEMALE</td>
+                                                            <th scope="row">{{ EAABHcountFemale }}</td>
+                                                            <td>{{ EAABHcountFemaleOngoing }}</td>
+                                                            <td>{{ EAABHcountFemaleP1 }}</td>
+                                                            <td>{{ EAABHcountFemaleP2 }}</td>
+                                                            <td>{{ EAABHcountFemaleDQ }}</td>
+                                                            <td>{{ EAABHcountFemaleDNC }}</td>
+                                                            <td>{{ EAABHcountFemaleDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" rowspan="2">TOTAL</td>
+                                                            <th scope="row" rowspan="2">{{ EAABHcountTotal }}</td>
+                                                            <td>{{ EAABHcountTotalOngoing }}</td>
+                                                            <td>{{ EAABHcountTotalP1 }}</td> 
+                                                            <td>{{ EAABHcountTotalP2 }}</td>
+                                                            <td>{{ EAABHcountTotalDQ }}</td>
+                                                            <td>{{ EAABHcountTotalDNC }}</td>
+                                                            <td>{{ EAABHcountTotalDNR }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" colspan="8">{{ EAABHcountGrandTotal }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+{% endif %}
+
+{% endblock %}
+
+

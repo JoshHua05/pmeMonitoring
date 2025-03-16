@@ -1,0 +1,93 @@
+{% extends "pmeApp/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card-body">
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="display-6">List of Applicants</h1>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-auto">
+                      <input type="text"  class="form-control" name="q" type="search" placeholder="Search" >
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary mb-3">Search</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>LAST NAME</th>
+                            <th>FIRST NAME</th>
+                            <th>MI</th>
+                            <th>GENDER</th>
+                            <th>BIRTH DATE</th>
+                            <th>CONTACT NUMBER</th>
+                            <th>AUTHORITY DATE</th>
+                            <th>MTF</th>
+                            <th>PURPOSE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for applicant in applicant %}
+                        <tr>
+                            <td>{{ applicant.id}}</td>
+                            <td>{{ applicant.lastName }}</td>
+                            <td>{{ applicant.firstName }}</td>
+                            <td>{{ applicant.middleInitial }}</td>
+                            <td>{{ applicant.sex }}</td>
+                            <td>{{ applicant.birthDate}}</td>
+                            <td>{{ applicant.contactNumber }}</td>
+                            <td>{{ applicant.authorityDate }}</td>
+                            <td>{{ applicant.mtf }}</td>
+                            <td>{{ applicant.purpose }}</td>
+                            <td>
+                                <a href="{% url 'applicant-update' applicant.id %}" class="btn btn-outline-secondary btn-sm" ><i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i></a>
+                                <a href="{% url 'applicant-delete' applicant.id %}" class="btn btn-outline-danger btn-sm" ><i class="fa-solid fa-trash-can" style="color: #ff0000;"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="card-footer text-body-secondary">
+                {% if applicant.has_previous %}
+                <a href="?page=1">&laquo First</a>
+                <a href="?page={{ applicant.previous_page_number }}">Previous</a>
+                {% endif %}
+                Page {{ applicant.number }} of {{ applicant.paginator.num_pages }}
+                {% if applicant.has_next %}
+                    <a href="?page={{ applicant.next_page_number }}">Next</a>
+                    <a href="?page={{ applicant.paginator.num_pages }}">Last &raquo</a>
+                {% endif %}
+            </div>
+      </div>
+
+</div>
+
+
+{% endblock %}
+
+
+
+

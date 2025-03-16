@@ -1,0 +1,46 @@
+{% extends "pmeApp/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    You are currently logged in as: <strong>{{ user }}</strong>
+  </div>
+    
+{% else %}  
+  <div class="container"></div>
+  <br><br>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="display-6">Login</h1>
+        </div>
+        <div class="card-body">
+          <form action="" method="POST">
+            {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password">
+                </div>
+            <input type="submit" value="LOGIN" class="btn btn-secondary">
+        </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  </div>
+{% endif %}
+
+
+{% endblock %}
+

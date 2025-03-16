@@ -1,0 +1,78 @@
+{% extends "pmeApp/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="display-6">OCSAF</h1>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-auto">
+                      <input type="text"  class="form-control" name="q" type="search" placeholder="Search" >
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary mb-3">Search</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered border-dark-subtle table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>LAST NAME</th>
+                            <th>FIRST NAME</th>
+                            <th>MI</th>
+                            <th>SUFFIX</th>
+                            <th>STATUS</th>
+                            <th>FINDINGS</th>
+                            <th>DATE OF CERT</th>
+                            <th>REMARKS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ocsaf in ocsaf %}
+                        <tr>
+                            <td>{{ ocsaf.id }}</td>  
+                            <td>{{ ocsaf.lastName }}</td>   
+                            <td>{{ ocsaf.firstName }}</td>
+                            <td>{{ ocsaf.middleInitial }}</td>
+                            <td>{{ ocsaf.mtf }}</td>
+                            <td>{{ ocsaf.ocsafStatus }}</td>
+                            <td>{{ ocsaf.ocsafFindings}}</td>
+                            <td>{{ ocsaf.ocsafDateOfCert }}</td>
+                            <td>{{ ocsaf.ocsafRemarks }}</td>
+                            <td>
+                                <a href="{% url 'ocsaf-update' ocsaf.id %}" class="btn btn btn-outline-warning btn-sm" ><i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="card-footer text-body-secondary">
+                {% if ocsaf.has_previous %}
+                    <a href="?page=1">&laquo First</a>
+                    <a href="?page={{ ocsaf.previous_page_number }}">Previous</a>
+                {% endif %}
+                Page {{ ocsaf.number }} of {{ ocsaf.paginator.num_pages }}
+                {% if ocsaf.has_next %}
+                    <a href="?page={{ ocsaf.next_page_number }}">Next</a>
+                    <a href="?page={{ ocsaf.paginator.num_pages }}">Last &raquo</a>
+                {% endif %}
+            </div>
+      </div>
+</div>
+
+{% endblock %}
+

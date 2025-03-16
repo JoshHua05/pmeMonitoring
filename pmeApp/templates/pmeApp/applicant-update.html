@@ -1,0 +1,94 @@
+{% extends "pmeApp/layout.html" %}
+{% load widget_tweaks %}
+{% block title %} PME Monitoring {% endblock %}
+
+
+{% block content %}
+
+<div class="container-sm">
+
+    <div class="card">
+        <div class="card-header">
+            <h1 class="display-6">Update Applicant</h1>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-2">
+                            <label class="form-label">Last Name</label>
+                            {% render_field form.lastName placeholder="" class+="form-control" %}
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-2">
+                            <label class="form-label">First Name</label>
+                            {% render_field form.firstName placeholder="" class+="form-control" %}
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label class="form-label">M.I.</label>
+                            {% render_field form.middleInitial placeholder="" class+="form-control" %}
+                        </div>
+                    </div> 
+                    <div class="col-2">
+                        <div class="mb-3">
+                            <label class="form-label">Suffix</label>
+                            {% render_field form.suffix placeholder="" class+="form-control" %}
+                        </div>
+                    </div> 
+                </div>
+    
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="mb-2">
+                                <label class="form-label">Gender:</label>
+                                {% render_field form.sex placeholder="" class+="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-2">
+                                <label class="form-label">Birth Date:</label>
+                                {% render_field form.birthDate placeholder="" class+="form-control" type="date" %}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-2">
+                                <label class="form-label">Contact Number</label>
+                                {% render_field form.contactNumber placeholder="e.g. 919xxxxxxx" class+="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-4">
+                                <label class="form-label">Date of Authority</label>
+                                {% render_field form.authorityDate placeholder="" class+="form-control" type="date"%}
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="mb-2">
+                                <label class="form-label">MTFs :</label>
+                                {% render_field form.mtf placeholder="" class+="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-2">
+                                <label class="form-label">Purpose:</label>
+                                {% render_field form.purpose placeholder="" class+="form-control" %}
+                            </div>
+                        </div>
+                    </div>
+    
+                <button type="submit" class="btn btn-primary">SAVE</button>
+            </form>
+        </div>
+      </div>
+
+</div>
+
+{% endblock %}
+
