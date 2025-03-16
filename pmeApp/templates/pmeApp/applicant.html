@@ -9,7 +9,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h1 class="display-6">Enter New Applicant</h1>
+            <h3 class="display-6">Enter New Applicant</h1>
         </div>
         <div class="card-body">
             {% if submitted %}
@@ -19,84 +19,79 @@
                 </div>
             
             {% else %}   
+
             <form method="POST">
                 {% csrf_token %}
-                <div class="row">
-                    <div class="col-4">
-                        <div class="mb-2">
-                            <label class="form-label">Last Name</label>
-                            {% render_field form.lastName placeholder="" class+="form-control" %}
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mb-2">
-                            <label class="form-label">First Name</label>
-                            {% render_field form.firstName placeholder="" class+="form-control" %}
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="mb-3">
-                            <label class="form-label">M.I.</label>
-                            {% render_field form.middleInitial placeholder="" class+="form-control" %}
-                        </div>
-                    </div> 
-                        <div class="col-2">
-                            <div class="mb-3">
-                                <label class="form-label">Suffix</label>
-                                {% render_field form.suffix placeholder="e.g. Jr. Sr. III" class+="form-control" %}
-                            </div>
-                        </div> 
-                    </div>
-    
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <label class="form-label">Sex:</label>
-                                {% render_field form.sex placeholder="" class+="form-control" %}
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <label class="form-label">Birth Date:</label>
-                                {% render_field form.birthDate placeholder="" class+="form-control" type="date" %}
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <label class="form-label">Contact Number</label>
-                                {% render_field form.contactNumber placeholder="e.g. 0919xxxxxxx" class+="form-control" %}
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-4">
-                                <label class="form-label">Date of Authority</label>
-                                {% render_field form.authorityDate placeholder="" class+="form-control" type="date"%}
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <label class="form-label">MTFs :</label>
-                                {% render_field form.mtf placeholder="" class+="form-control" %}
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-2">
-                                <label class="form-label">Purpose:</label>
-                                {% render_field form.purpose placeholder="" class+="form-control" %}
-                            </div>
-                        </div>
-                    </div>
-    
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example1">Last Name</label>
+                    {% render_field form.lastName placeholder="" class+="form-control" %}
+                </div>
+
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example2">First Name</label>
+                    {% render_field form.firstName placeholder="" class+="form-control" %}
+                </div>
+
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example2">MI</label>
+                    {% render_field form.firstName placeholder="" class+="form-control" %}
+                </div>
+
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example2">Suffix</label>
+                    {% render_field form.suffix placeholder="e.g. Jr. Sr. III" class+="form-control" %}
+                </div>
+              
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Sex</label>
+                    {% render_field form.sex placeholder="" class+="form-control" %}
+                </div>
+              
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example4">Birth Date</label>
+                    {% render_field form.birthDate placeholder="" class+="form-control" type="date" %}
+
+                </div>
+              
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example5">Contact Number</label>
+                    {% render_field form.contactNumber placeholder="e.g. 0919xxxxxxx" class+="form-control" %}
+                </div>
+              
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example6">Date of Authority</label>
+                    {% render_field form.authorityDate placeholder="" class+="form-control" type="date"%}
+                </div>
+
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example6">MTFs</label>
+                    {% render_field form.mtf placeholder="" class+="form-control" %}
+                </div>
+              
+                <!-- Text input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label class="form-label" for="form6Example6">Purpose</label>
+                    {% render_field form.purpose placeholder="" class+="form-control" %}
+                </div>
+              
+                <!-- Submit button -->
+                <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Save</button>  
+              </form>
             {% endif %}
 
         </div>
       </div>
 </div>
+
 
 {% endblock %}
 
