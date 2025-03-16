@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-dj#hj&jc(5upmpo3w-ur77(17!c%s!!z!nxjrej%@e=nu&cy!t
 DEBUG = True
 
 ALLOWED_HOSTS = ['pmemonitoring-production.up.railway.app','https://pmemonitoring-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['pmemonitoring-production.up.railway.app','https://pmemonitoring-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://pmemonitoring-production.up.railway.app']
 
 
 # Application definition
