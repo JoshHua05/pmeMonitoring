@@ -11,34 +11,34 @@
   </div>
     
 {% else %}  
-  <div class="container"></div>
-  <br><br>
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div class="card">
-        <div class="card-header">
-          <h1 class="display-6">Login</h1>
-        </div>
-        <div class="card-body">
-          <form action="" method="POST">
-            {% csrf_token %}
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="password">
-                </div>
-            <input type="submit" value="LOGIN" class="btn btn-secondary">
-        </form>
+  <section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5">Login</h3>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="username" />
+                    <label class="form-label" for="typeEmailX-2">Username</label>
+                  </div>
+    
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" />
+                    <label class="form-label" for="typePasswordX-2">Password</label>
+                  </div>
+
+                <input data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit" value="LOGIN" >
+            </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-3"></div>
-  </div>
-  </div>
+  </section>
 {% endif %}
 
 

@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-dj#hj&jc(5upmpo3w-ur77(17!c%s!!z!nxjrej%@e=nu&cy!t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['pmemonitoring-production.up.railway.app','https://pmemonitoring-production.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://pmemonitoring-production.up.railway.app']
 
